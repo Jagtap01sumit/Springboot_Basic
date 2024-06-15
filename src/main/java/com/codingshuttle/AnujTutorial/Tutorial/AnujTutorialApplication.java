@@ -1,12 +1,14 @@
 package com.codingshuttle.AnujTutorial.Tutorial;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class AnujTutorialApplication implements CommandLineRunner {
-    ProdDB db;
+    @Autowired
+    DB db;
 
     public static void main(String[] args) {
         SpringApplication.run(AnujTutorialApplication.class, args);
@@ -15,7 +17,7 @@ public class AnujTutorialApplication implements CommandLineRunner {
 
     @Override
     public void run(String...args) throws Exception {
-        db = new ProdDB();
+
         System.out.println(db.getData());
 
 

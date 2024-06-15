@@ -60,4 +60,19 @@ public class MyRepository {
 ##### greater modularity of a program
 ##### greater ease in testing a program by isolating a component or mocking its dependencies, and allowing components to communicate through contracts
 
+## Use MVC
+### Model, View, Controller
+#### 1. Presentation Layer => Define @Controllers
+#### 2. Service Layer(Logic Layer)
+#### 3. Persistance Layer (contact with DB)
+
+### Advantanges => Scalability , Maintainability,Testability
+
+### Packages 
+#### 1. controllers
+#### 2. services
+#### 3. repositories
+#### 4. dto
+#### 5. entities
+
 
