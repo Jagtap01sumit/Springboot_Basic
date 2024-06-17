@@ -1,7 +1,7 @@
 package com.codingshuttle.AnujTutorial.Tutorial.services;
 
 //Working
-//conversion of dto to entity and entity to dto
+//conversion of dto to entity and entity to dto & Queries
 
 import com.codingshuttle.AnujTutorial.Tutorial.dto.EmployeeDTO;
 import com.codingshuttle.AnujTutorial.Tutorial.entities.EmployeeEntity;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 //Service layer convert DTO to Entity and Entity to DTO
 @Service
@@ -54,5 +53,15 @@ public class EmployeeServices {
             list.add(map);
         }
         return list;
+    }
+
+    public boolean deleteEmployeeById(Long id) {
+        boolean isPresent = employeeRepository.existsById(id);
+
+        if (!isPresent) return false;
+
+        employeeRepository.deleteById(id);
+        return true;
+
     }
 }

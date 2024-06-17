@@ -45,5 +45,10 @@ public class EmployeeController {
         return  employeeServices.getAllEmployees();
 
     }
+    @DeleteMapping(path="/{id}")
+    public boolean deleteEmployeeById(@PathVariable Long id){
+        return  employeeServices.deleteEmployeeById(id);
+
+    }
 
 }
