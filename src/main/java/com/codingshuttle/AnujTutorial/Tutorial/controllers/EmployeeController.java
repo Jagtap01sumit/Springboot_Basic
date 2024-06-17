@@ -2,28 +2,48 @@ package com.codingshuttle.AnujTutorial.Tutorial.controllers;
 
 
 import com.codingshuttle.AnujTutorial.Tutorial.dto.EmployeeDTO;
+import com.codingshuttle.AnujTutorial.Tutorial.repositories.EmployeeRepository;
+import com.codingshuttle.AnujTutorial.Tutorial.services.EmployeeServices;
 import jakarta.websocket.server.PathParam;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 // operations
 //GET /employees
 //POST /employees
 //DELETE /employees/{id}
 @RestController
+@RequestMapping(path="employees")
 public class EmployeeController {
+//Controller <- service <- Repository    ----------data flow
+    private final EmployeeServices employeeServices; // we need obj of empservice to get data so we use  Dependency Injection by creating Constructor injection
 
-    @GetMapping(path = "/employees/{id}")
-    public EmployeeDTO getEmployees(@PathVariable("id") Long employeeId) {
-        return new EmployeeDTO(employeeId, "sumit", LocalDate.of(2024, 01, 02), true);
+
+    public EmployeeController(EmployeeServices employeeServices) {
+        this.employeeServices = employeeServices;
     }
 
-    @GetMapping(path = "/employees")
-    public String getData(@PathParam("sortBy") String sortBy, @PathParam("limit") Integer limit) {
-        return "Hello " + sortBy + " " + limit;
+    @GetMapping(path = "/{id}")
+    public EmployeeDTO getEmployeeById(@PathVariable("id") Long employeeId) {
+        return employeeServices.getEmployeeById(employeeId);
     }
+
+    //Type to take data input
+    //PathVAriable
+    //PathParams
+    //RequestBody
+
+    @PostMapping
+    public EmployeeDTO createNewEmployee(@RequestBody EmployeeDTO employeeDTO) {
+        return employeeServices.createNewEmployee(employeeDTO);
+    }
+    @GetMapping
+    public List<EmployeeDTO> getAllEmployees(){
+        return  employeeServices.getAllEmployees();
+
+    }
+
 }
