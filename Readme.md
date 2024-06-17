@@ -311,3 +311,10 @@ public EmployeeEntity saveEmployee(EmployeeDTO employeeDTO) {
        return new ModelMapper();
    }
 ```
+
+```java
+ modelMapper.map(employeeDTO, EmployeeEntity.class); //dto to entity
+```
+``` java
+ modelMapper.map(employeeEntity, EmployeeDTO.class); //entity to dto
+```
